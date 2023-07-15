@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+  
+  <!-- Servlets -->
+	<servlet>
+		<servlet-name>greetServlet</servlet-name>
+		<servlet-class>app.server.GreetingServiceImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>greetServlet</servlet-name>
+		<url-pattern>/proyectobilpa/greet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>downloadServlet</servlet-name>
+		<servlet-class>app.server.download.DownloadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>downloadServlet</servlet-name>
+		<url-pattern>/download</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+    	<servlet-name>OperacionesServlet</servlet-name>
+    	<servlet-class>app.server.servicios.OperacionesServlet</servlet-class>
+ 	</servlet>
+  	<servlet-mapping>
+    	<servlet-name>OperacionesServlet</servlet-name>
+    	<url-pattern>/servicios</url-pattern>
+  	</servlet-mapping>	
+  	
+  	<servlet>
+    	<servlet-name>OperacionesCorrectivosServlet</servlet-name>
+    	<servlet-class>app.server.servicios.OperacionesCorrectivosServlet</servlet-class>
+ 	</servlet>
+  	<servlet-mapping>
+    	<servlet-name>OperacionesCorrectivosServlet</servlet-name>
+    	<url-pattern>/servicioscorrectivos</url-pattern>
+  	</servlet-mapping>
+	
+	<listener>
+		<listener-class> app.server.ContextListener 
+		</listener-class>
+	</listener>
+  
+  <!-- Default page to serve -->
+	<welcome-file-list>
+		<welcome-file>ProyectoBilpa.html</welcome-file>
+	</welcome-file-list>
+</web-app>

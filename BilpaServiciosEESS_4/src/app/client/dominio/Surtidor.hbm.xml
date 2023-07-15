@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="app.client.dominio">
+     
+      <joined-subclass name="Surtidor" extends="Activo" table="surtidores">
+            
+            <key column="id"></key>
+      		<property name="numeroSerie" column="serialNumber"/>			
+			<many-to-one name="modelo" class="ModeloSurtidor" column="modelo" lazy="false"></many-to-one>
+		
+			<set name="picos" table="picos" cascade="all, delete" >
+				<key column="surtidor" />
+				<one-to-many class="Pico" />
+			</set>	
+      </joined-subclass>
+    
+</hibernate-mapping>

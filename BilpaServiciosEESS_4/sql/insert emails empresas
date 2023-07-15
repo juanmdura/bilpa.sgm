@@ -1,0 +1,11 @@
+use test;
+
+SELECT * 
+FROM emails_empresa ee
+inner join empresas e on e.id = ee.empresa
+where e.sello = 3 -- Sello
+;
+
+insert into emails_empresa (empresa, email)
+select  e.id, 'juanmdura@gmail.com'
+from empresas e where e.sello = 3

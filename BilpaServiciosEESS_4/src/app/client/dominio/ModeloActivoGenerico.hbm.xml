@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="app.client.dominio">
+	<class name="ModeloActivoGenerico" table="modelos_activos_genericos">		
+		
+		<id name="id" column="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="activo" column="activo" />
+		<property name="nombre" column="nombre" />
+		<many-to-one name="tipo" class="TipoActivoGenerico" column="tipo" lazy="false" />
+		<many-to-one name="marca" class="MarcaActivoGenerico" column="marca" lazy="false" />
+	</class>
+</hibernate-mapping>

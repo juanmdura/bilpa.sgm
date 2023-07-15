@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="app.client.dominio">
+
+	<class name="Calibre" table="calibres">
+
+		<id name="id" column="id">
+			<generator class="native"></generator>
+		</id>
+
+		<many-to-one name="pico" class="Pico" column="pico"></many-to-one>
+
+		<property name="calibre1" column="calibre1" />
+		<property name="calibre2" column="calibre2" />
+		<property name="calibre3" column="calibre3" />
+
+		<property name="calibre4" column="calibre4" />
+		<property name="calibre5" column="calibre5" />
+		<property name="calibre6" column="calibre6" />
+
+	</class>
+
+</hibernate-mapping>

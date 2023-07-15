@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="app.client.dominio">
+
+	<class name="ComentarioChequeo" table="comentarios_chequeos">
+	
+		<id name="id" column="id">
+			<generator class="native"></generator>
+		</id>
+		
+		<property name="fecha" column="fecha" />
+		<property name="imprimible" column="imprimible" />
+		<property name="texto" column="texto" />
+		<property name="activo" column="activo" />
+		<many-to-one name="usuario" class="Persona" column="usuario"/>
+		<many-to-one name="itemChequeado" class="ItemChequeado" column="itemChequeado" />
+	</class>
+	
+</hibernate-mapping>

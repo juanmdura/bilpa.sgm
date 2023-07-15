@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+	<session-factory>
+
+		<!-- Conexión a un pool de conexiones para JPortal -->
+		
+		<!-- 
+		<property name="connection.datasource">java:comp/env/jdbc/JPortalDS</property>
+		<property name="connection.auth">Container</property>
+ -->
+	
+		
+		<!-- Conexión a base de datos Oracle -->
+		 
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/bilpa</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">bilparocks</property>
+
+		<!-- Enable Hibernate's automatic session context management thread managed-->
+		<property name="current_session_context_class">thread</property>
+		<property name="hibernate.transaction.factory_class">
+			org.hibernate.transaction.JDBCTransactionFactory
+		</property>
+		
+		<!-- Generacion automatica de la base, sacar esto en produccion-->
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		
+		<property name="hibernate.transaction.auto_close_session">true</property>
+		<property name="hibernate.cache.use_second_level_cache">false</property>
+	
+		<property name="org.hibernate.ConnectionReleaseMode">
+			AFTER_STATEMENT
+		</property>
+<!-- AFTER_TRANSACTION  -->
+		<!-- Disable the second-level cache  -->
+		<property name="cache.provider_class">
+			org.hibernate.cache.NoCacheProvider
+		</property>
+
+		<!-- Echo all executed SQL to stdout -->
+		<property name="show_sql">false</property>
+		<property name="format_sql">true</property>
+		
+	</session-factory>
+
+</hibernate-configuration>

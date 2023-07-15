@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="app.client.dominio">
+
+	<class name="Activo" table="empresas_activos">
+		
+		<id name="id" column="id">
+			<generator class="native"></generator>
+		</id>
+					
+		<property name="tipo" column="tipoActivo"/>			
+		<many-to-one name="qr" class="QR" column="qr" cascade="all" lazy="false"></many-to-one>
+
+		<many-to-one name="empresa" class="Estacion" ></many-to-one>
+		
+		<property name="estado" column="estado">
+    		<type name="org.hibernate.type.EnumType">
+        		<param name="enumClass">app.client.dominio.EstadoActivo</param>
+        		<param name="useNamed">true</param>
+        		<param name="type">12</param>
+    		</type>
+		</property>
+
+		<property name="inicioGarantia" column="inicioGarantia" />
+		<property name="finGarantia" column="finGarantia" />
+		
+		<property name="anioFabricacion" column="anio_frabricacion"/>	
+		
+	</class>
+</hibernate-mapping>

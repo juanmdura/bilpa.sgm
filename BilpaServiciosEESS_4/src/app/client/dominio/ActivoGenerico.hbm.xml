@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="app.client.dominio">
+      <joined-subclass name="ActivoGenerico" extends="Activo" table="activos_genericos">            
+            <key column="id" ></key>
+			<many-to-one name="tipoActivoGenerico" class="TipoActivoGenerico" column="tipoActivoGenerico" lazy="false" />
+			<many-to-one name="marca" class="MarcaActivoGenerico" column="marca" lazy="false" />
+			<many-to-one name="modelo" class="ModeloActivoGenerico" column="modelo" lazy="false" />
+	
+			<property name="descripcion" column="descripcion" />
+			<property name="serie" column="serie" />
+			<property name="fecha" column="fecha" />
+      </joined-subclass>
+    
+</hibernate-mapping>

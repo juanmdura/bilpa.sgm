@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="app.client.dominio">
+
+	<class name="Corregido" table="corregidos">
+		
+		<id name="id" column="id">
+			<generator class="native"></generator>
+		</id>
+		
+		<property name="comentario" column="comentario"/>
+		<property name="comentarioVisible" column="comentario_visible"/>
+		
+		<many-to-one name="falla" class="FallaTecnica" column="falla_tecnica"></many-to-one>
+		<many-to-one name="tarea" class="Tarea" column="tarea"></many-to-one>
+		<many-to-one name="destinoDelCargo" class="DestinoDelCargo" column="destino_del_cargo"></many-to-one>
+		<many-to-one name="preventivo" class="Preventivo" column="preventivo"></many-to-one>
+	
+		<set name="listaDeRepuestos" table="repuestos_corregidos" cascade="all">
+			<key column="corregido" />
+			<one-to-many class="RepuestoLineaCorregido" />
+		</set>	
+	
+		<many-to-one name="foto" class="Foto" column="foto" lazy="false" cascade="all"></many-to-one>
+		<many-to-one name="foto2" class="Foto" column="foto2" lazy="false" cascade="all"></many-to-one>	
+	
+	</class>
+</hibernate-mapping>

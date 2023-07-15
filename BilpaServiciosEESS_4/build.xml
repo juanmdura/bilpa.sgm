@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="bilpa" default="build" basedir=".">
+
+	<property name="project.name" value="${ant.project.name}" />
+	<property name="project.classes" value="war/WEB-INF/classes" />
+	<property name="project.sources" value="src" />
+	<property name="ear.name" value="bilpa" />
+	
+	<!--
+	 - Si esta variable no está configurada globalmente entonces la configuramos a 
+	 - partir de la variable de 'jboss.home' y el nombre del proyecto 
+	-->
+	<property name="server.deploy.path" value="${jboss.home}/server/default/deploy"/>
+
+	<target name="deploy" depends="build,undeploy">
+		<fail message="La propiedad 'server.deploy.path' no está configurada en Eclipse" unless="server.deploy.path" />
+		<copy todir="${server.deploy.path}" >
+			<fileset dir="build">
+				<include name="${ear.name}.`ear/**"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="undeploy">
+		<fail message="La propiedad 'server.deploy.path' no está configurada en Eclipse" unless="server.deploy.path" />
+		<delete dir="${server.deploy.path}/${ear.name}.ear" quiet="true" />
+	</target>
+	
+	<target name="build" depends="clean,ear-build" />
+
+	<target name="ear-build" depends="mkdirs,war-build">
+		
+		<!-- Copiar el contenido local al EAR -->
+		<copy todir="build/${ear.name}.ear" overwrite="true">
+			<fileset dir="ear" />
+		</copy>
+		
+		<!-- Copiar las librerías internas al EAR -->
+		<copy todir="build/${ear.name}.ear" >
+			<fileset dir="build">
+				<include name="${project.name}.war"/>
+			</fileset>
+		</copy>			
+	</target>
+	
+	<target name="war-build" depends="mkdirs">
+		<war destfile="build/${project.name}.war" webxml="war/WEB-INF/web.xml">
+			<fileset dir="war">
+				<exclude name="WEB-INF/web.xml"/>
+			</fileset>
+		</war>
+	</target>
+
+	<target name="mkdirs">
+		<mkdir dir="build" />
+		<mkdir dir="build/${ear.name}.ear" />
+	</target>
+	
+	<target name="clean">
+		<delete dir="build/${ear.name}.ear"/>
+		<delete dir="build" includes="*.jar,*.war"/>
+	</target>
+
+</project>

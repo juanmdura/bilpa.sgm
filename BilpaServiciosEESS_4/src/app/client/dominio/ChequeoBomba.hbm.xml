@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="app.client.dominio">
+	<joined-subclass name="ChequeoBomba" extends="Chequeo"
+		table="chequeos_bombas">
+
+		<key column="id"></key>
+
+	</joined-subclass>
+</hibernate-mapping>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="app.client.dominio">
+	<class name="Persona" table="usuarios" abstract="true">
+		
+		<id name="id" column="id">
+			<generator class="native"></generator>
+		</id>
+		
+		<discriminator column="tipoPermiso"/>
+		
+		<property name="nombreDeUSuario" column="usuario"/>
+		<property name="email" column="email"/>
+		<property name="apellido" column="apellido"/>
+		<property name="nombre" column="nombre"/>  				
+		<property name="sexo" column="sexo"/>
+		<property name="clave" column="clave"/>		
+		<property name="telefono" column="telefono"/>
+		
+		<many-to-one name="empresa" class="Estacion" column="empresa"/>
+		
+		
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="app.client.dominio">
+     
+      <joined-subclass name="ChequeoSurtidor" extends="Chequeo" table="chequeos_surtidores">
+            
+            <key column="id"></key>
+      		
+			<set name="listaDeProductos" table="chequeos_productos" cascade="all" lazy="false">
+				<key column="chequeo_surtidor" />
+				<one-to-many class="ChequeoProducto" />
+			</set>
+				
+			<set name="listaDeChequeosPicos" table="chequeos_picos" cascade="all" lazy="false">
+				<key column="chequeo_surtidor" />
+				<one-to-many class="ChequeoPico" />
+			</set>	
+			
+      </joined-subclass>
+    
+</hibernate-mapping>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="app.client.dominio">
+
+       <joined-subclass name="ReparacionSurtidor" extends="Reparacion" table="reparaciones_surtidores">
+            
+            <key column="reparacion"></key>
+			
+			<set name="contadores" table="contadores" cascade="all, delete-orphan" lazy="false">
+				<key column="reparacion" />
+				<one-to-many class="Contador" />
+			</set>
+			
+   </joined-subclass>    
+    
+</hibernate-mapping>

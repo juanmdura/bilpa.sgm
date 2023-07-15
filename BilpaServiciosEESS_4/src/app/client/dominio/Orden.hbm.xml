@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="app.client.dominio">
+	<class name="Orden" table="ordenes">
+	
+		<id name="numero" column="numero">
+			<generator class="native"></generator>
+		</id>
+		
+		<property name="estadoOrden" column="estado" />
+		<property name="fechaCumplimiento" column="fechaCumplimiento" />
+		<property name="fechaInicio" column="fechaYHoraReclamo" />
+		<property name="fechaFin" column="fechaYHoraFin" />
+		<property name="inicioService" column="inicioService" />
+		<property name="finService" column="finService" />
+		<property name="inicioServiceReal" column="inicioServiceReal" />
+		<property name="finServiceReal" column="finServiceReal" />
+	
+		<property name="prioridad" column="prioridad" />
+		<property name="numeroParteDucsa" column="numeroParteDucsa" />
+		<property name="comentarioAnulada" column="comentarioAnulada" />
+		<property name="preventivo" column="preventivo" />
+		
+		<many-to-one name="empresa" class="Estacion" column="empresa" />
+		<many-to-one name="tecnicoAsignado" class="Persona" column="tecnico"/>
+		<many-to-one name="contacto" class="ContactoEmpresa" column="contacto"/>
+		<many-to-one name="creador" class="Persona" column="creador"/>
+		<many-to-one name="anulador" class="Persona" column="anulador"/>
+		<many-to-one name="tipoTrabajo" class="TipoTrabajo" column="tipoTrabajo"/>
+		<many-to-one name="visita" class="Visita" column="visita"/>
+		
+		<set name="reparaciones" table="reparaciones" cascade="all, delete-orphan">
+			<key column="orden" />
+			<one-to-many class="Reparacion" />
+		</set>
+	 
+		<set name="repuestosLineas" table="orden_Repuestos" cascade="all, delete-orphan" >
+			<key column="orden" />
+			<one-to-many class="RepuestoLinea" />
+		</set>
+		
+		<set name="comentarios" table="comentarios" cascade="all">
+			<key column="orden" />
+			<one-to-many class="Comentario" />
+		</set>	
+		
+		<many-to-one name="firma" class="Firma" column="firma" cascade="all"></many-to-one>
+	
+	</class>
+</hibernate-mapping>

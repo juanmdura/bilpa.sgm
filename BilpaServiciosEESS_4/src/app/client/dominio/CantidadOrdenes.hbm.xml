@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="app.client.dominio">
+
+	<class name="CantidadOrdenes" table="usuarios_cantidad_ordenes">
+	
+		<id name="id" column="id">
+			<generator class="native"></generator>
+		</id>
+		
+		<property name="cantidad" column="cantidadOrdenes" />
+		<many-to-one name="usuario" class="Persona" column="usuario"/>
+		
+	</class>
+	
+</hibernate-mapping>

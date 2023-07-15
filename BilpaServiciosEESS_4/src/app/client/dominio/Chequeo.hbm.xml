@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="app.client.dominio">
+
+	<class name="Chequeo" table="chequeos">
+		
+		<id name="id" column="id">
+			<generator class="native"></generator>
+		</id>
+		<property name="ultimaModificacion" column="ultima_modificacion" />
+		
+		<set name="itemsChequeados" table="items_chequeados" cascade="all">
+			<key column="chequeo" />
+			<one-to-many class="ItemChequeado" />
+		</set>
+					
+	</class>
+</hibernate-mapping>

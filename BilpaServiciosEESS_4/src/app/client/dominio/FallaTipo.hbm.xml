@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="app.client.dominio">
+	
+	<class name="FallaTipo" table="fallas" abstract="true">
+		
+		<id name="id" column="id">
+			<generator class="native"></generator>
+		</id>
+		
+		<discriminator column="tipoFalla" />
+		<property name="descripcion" column="descripcion" />
+		<property name="inactiva" column="inactivo" />
+		<property name="subTipo" column="subTipoFalla" />		
+	</class>
+	
+</hibernate-mapping>

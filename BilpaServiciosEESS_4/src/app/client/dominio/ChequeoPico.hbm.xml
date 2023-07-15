@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="app.client.dominio">
+
+	<joined-subclass name="ChequeoPico" extends="Chequeo"
+		table="chequeos_picos">
+
+		<key column="id"></key>
+
+		<property name="totalizadorMecanicoInicial" column="totalizador_mecanico_inicial" />
+		<property name="totalizadorMecanicoFinal" column="totalizador_mecanico_final" />
+		<property name="totalizadorElectronicoInicial" column="totalizador_electronico_inicial" />
+		<property name="totalizadorElectronicoFinal" column="totalizador_electronico_final" />
+
+		<many-to-one name="preventivo" class="Preventivo" column="preventivo"></many-to-one>
+
+		<many-to-one name="pico" class="Pico" column="pico"></many-to-one>
+
+		<many-to-one name="caudal" class="Caudal" column="caudal"
+			cascade="all"></many-to-one>
+		<many-to-one name="calibre" class="Calibre" column="calibre"
+			cascade="all"></many-to-one>
+		<many-to-one name="precinto" class="Precinto" column="precinto"
+			cascade="all"></many-to-one>
+
+	</joined-subclass>
+
+</hibernate-mapping>

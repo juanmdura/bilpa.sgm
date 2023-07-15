@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:application="http://java.sun.com/xml/ns/javaee/application_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_5.xsd"
+	id="Application_ID" version="5">
+
+	<description>Aplicación Empresarial de Bilpa</description>
+	<display-name>Bilpa</display-name>
+
+	<!-- EJBs -->
+
+	
+
+	<!-- Aplicaciones Web -->
+
+	 
+	<module>
+		<web>
+			<web-uri>bilpa.war</web-uri>
+			<context-root>bilpa</context-root>
+		</web>
+	</module>
+		
+</application>

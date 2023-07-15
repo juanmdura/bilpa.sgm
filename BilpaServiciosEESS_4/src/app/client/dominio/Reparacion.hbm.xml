@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="app.client.dominio">
+
+	<class name="Reparacion" table="reparaciones">
+		
+		<id name="id" column="id">
+			<generator class="native"></generator>
+		</id>
+		
+		<property name="tipo" column="tipo"/>			
+		<property name="comentario" column="comentario"/>
+
+		<many-to-one name="orden" class="Orden" column="orden" />
+		<many-to-one name="fallaReportada" class="FallaReportada" column="fallaReportada" />
+		<many-to-one name="activo" class="Activo" column="activo" />
+		<many-to-one name="pendiente" class="Pendiente" column="pendiente" cascade="all"></many-to-one>
+		
+		<set name="soluciones" table="soluciones" cascade="all, delete-orphan" lazy="false">
+			<key column="reparacion" />
+			<one-to-many class="Solucion" />
+		</set>
+		
+	</class>
+
+</hibernate-mapping>

@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="app.client.dominio">
+
+	<class name="Visita" table="visitas">
+
+		<id name="id" column="id">
+			<generator class="native"></generator>
+		</id>
+
+		<property name="inactiva" column="inactiva" />
+		<!-- 
+		<property name="mailEnviado" column="mail_enviado" />
+		-->
+		<property name="fechaCreada" column="fecha_creada" />
+		<property name="fechaRealizada" column="fecha_realizada" />
+		<property name="fechaProximaVisita" column="fecha_proxima_visita" />
+		<property name="fechaInicio" column="fecha_inicio" />
+		<property name="fechaFin" column="fecha_fin" />
+		<property name="notificada" column="notificada" />
+		<property name="estado" column="estado">
+    		<type name="org.hibernate.type.EnumType">
+        		<param name="enumClass">app.client.dominio.EstadoVisita</param>
+        		<param name="useNamed">true</param>
+        		<param name="type">12</param>
+    		</type>
+		</property>
+
+		<set name="listaDePreventivos" table="preventivos" cascade="all" order-by="id">
+			<key column="visita" />
+			<one-to-many class="Preventivo" />
+		</set>
+
+
+		<many-to-one name="firma" class="Firma" column="firma" cascade="all"></many-to-one>
+	
+		<many-to-one name="estacion" class="Estacion" column="estacion" lazy="false"></many-to-one>
+
+		<many-to-one name="tecnico" class="Tecnico" column="tecnico" lazy="false"/>
+
+	</class>
+
+</hibernate-mapping>

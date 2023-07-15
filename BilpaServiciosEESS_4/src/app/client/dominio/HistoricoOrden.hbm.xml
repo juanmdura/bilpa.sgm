@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="app.client.dominio">
+
+	<class name="HistoricoOrden" table="historico_ordenes">
+	
+		<id name="id" column="id">
+			<generator class="native"></generator>
+		</id>
+		
+		<property name="fecha" column="fecha" />
+		<many-to-one name="orden" class="Orden" column="orden" />
+		<property name="estadoOrden" column="estado" />
+		<many-to-one name="tecnicoAsignado" class="Persona" column="tecnicoAsignado"/>
+		<many-to-one name="sesion" class="Persona" column="sesion"/>
+		
+	</class>
+	
+</hibernate-mapping>

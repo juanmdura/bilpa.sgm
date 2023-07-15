@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="app.client.dominio">
+
+	<class name="Pendiente" table="pendientes">
+
+		<id name="id" column="id">
+			<generator class="native"></generator>
+		</id>
+
+		<property name="comentario" column="comentario" />
+		<property name="comentarioVisible" column="comentario_visible" />
+
+		<many-to-one name="foto" class="Foto" column="foto"
+			cascade="all"></many-to-one>
+
+		<property name="plazo" column="plazo" />
+		<property name="fechaReparado" column="fechaReparado" />
+		<property name="fechaCreado" column="fechaCreado" />
+		<property name="fechaModificado" column="fechaModificado" />
+
+		<many-to-one name="activo" class="Activo" column="activo" />
+		
+		<property name="motivoDescarte" column="motivoDescarte" />
+		<many-to-one name="descartador" class="Persona" column="descartador" />
+		<property name="fechaDescarte" column="fechaDescarte" />
+
+		<many-to-one name="ordenCreado" class="Orden" column="ordenCreado" />
+		<many-to-one name="ordenReparado" class="Orden" column="ordenReparado" />
+		<many-to-one name="ordenAsignada" class="Orden" column="ordenAsignada" />
+		<many-to-one name="solucion" class="Solucion" column="solucion" />
+		
+		<many-to-one name="preventivo" class="Preventivo" column="preventivo" />
+		<many-to-one name="corregido" class="Corregido" column="corregido" />
+		<many-to-one name="creador" class="Persona" column="creador" />
+		
+		<property name="estado" column="estado">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">app.client.dominio.EstadoPendiente</param>
+				<param name="useNamed">true</param>
+				<param name="type">12</param>
+			</type>
+		</property>
+
+		<property name="organizacion" column="organizacion">
+			<type name="org.hibernate.type.EnumType">
+				<param name="enumClass">app.client.dominio.Organizacion</param>
+				<param name="useNamed">true</param>
+				<param name="type">12</param>
+			</type>
+		</property>
+
+	</class>
+
+</hibernate-mapping>
